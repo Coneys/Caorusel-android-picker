@@ -19,8 +19,7 @@ ext {
     min_sdk_version = 21
     compile_target_sdk_version = 27
     compile_sdk_version = 27
-    build_tools_version = "27.0.2"
-    support_library_version = '27.0.2'
+    support_library_version = '27.1.1'
     android_architecture_components = '1.1.0'
     google_play_services_version = '11.8.0'
     gson_version = '2.4'

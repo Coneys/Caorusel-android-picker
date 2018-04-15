@@ -37,5 +37,10 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation 'fr.tvbarthel.blurdialogfragment:lib:2.2.0'
     implementation 'com.azoft.carousellayoutmanager:carousel:1.2.1'
-    compile project(path: ':carousellistpicker')
+
+
+    // android.arch
+    implementation "android.arch.lifecycle:extensions:$android_architecture_components"
+
+    implementation project(path: ':carousellistpicker')
 }

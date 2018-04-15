@@ -10,14 +10,16 @@ import android.view.animation.ScaleAnimation;
 import org.jetbrains.annotations.NotNull;
 
 import io.reactivex.subjects.Subject;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 
-public class CarouselAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private final RecyclerView.Adapter adapter;
-    private final Function1<? super Integer, T> itemGetter;
     private Animation clickAnimation = createAnimation();
-    final Subject<T> subject;
+
+    Function1<? super Integer, Unit> itemGetter;
+
 
 
     private Animation createAnimation() {
@@ -33,10 +35,8 @@ public class CarouselAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHo
         this.clickAnimation = clickAnimation;
     }
 
-    public CarouselAdapter(@NotNull RecyclerView.Adapter adapter, @NotNull Function1<? super Integer, T> itemGetter, @NotNull Subject<T> subject) {
+    public CarouselAdapter(@NotNull RecyclerView.Adapter adapter) {
         this.adapter = adapter;
-        this.itemGetter = itemGetter;
-        this.subject = subject;
     }
 
     @Override
@@ -63,7 +63,7 @@ public class CarouselAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHo
 
                     @Override
                     public void onAnimationEnd(Animation animation) {
-                        subject.onNext(itemGetter.invoke((viewHolder.getAdapterPosition())));
+                        itemGetter.invoke((viewHolder.getAdapterPosition()));
                     }
 
                     @Override

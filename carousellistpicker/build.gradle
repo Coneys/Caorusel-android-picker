@@ -2,11 +2,9 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'com.github.dcendents.android-maven'
 
-group='com.github.Coneey'
+group='com.github.Coneys'
 android {
     compileSdkVersion 27
-
-
 
     defaultConfig {
         minSdkVersion 21
