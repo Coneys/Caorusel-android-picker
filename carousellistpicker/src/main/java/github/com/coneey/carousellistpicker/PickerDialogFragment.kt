@@ -24,13 +24,14 @@ abstract class PickerDialogFragment<T> : DialogFragment() {
     open val recyclerViewId: Int = R.id.list
     open val removeDialogBackground = true
     open val centerScroll = true
-    open val layoutManager: RecyclerView.LayoutManager = CarouselLayoutManager(CarouselLayoutManager.VERTICAL, true)
+    open val layoutManager: () -> RecyclerView.LayoutManager = { CarouselLayoutManager(CarouselLayoutManager.VERTICAL, true) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val manager = layoutManager.invoke()
         val recyclerView = view.findViewById<RecyclerView>(recyclerViewId)
-        (layoutManager as? CarouselLayoutManager)?.setPostLayoutListener(CarouselZoomPostLayoutListener())
+        (manager as? CarouselLayoutManager)?.setPostLayoutListener(CarouselZoomPostLayoutListener())
 
         val getter = { position: Int ->
             dismiss()
@@ -38,7 +39,7 @@ abstract class PickerDialogFragment<T> : DialogFragment() {
         }
         carouselAdapter.itemGetter = getter
         recyclerView.adapter = carouselAdapter
-        recyclerView.layoutManager = layoutManager
+        recyclerView.layoutManager = manager
         recyclerView.setHasFixedSize(true)
         if (centerScroll)
             recyclerView.addOnScrollListener(CenterScrollListener())

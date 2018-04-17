@@ -20,9 +20,9 @@ class MainActivity : AppCompatActivity() {
             println("Something arrived!")
             button.text = it
         }
-
+        val dialog = TestPickerFragment()
         button.setOnClickListener {
-            TestPickerFragment().show(supportFragmentManager, "TAG")
+            dialog.show(supportFragmentManager, "TAG")
         }
 
     }
