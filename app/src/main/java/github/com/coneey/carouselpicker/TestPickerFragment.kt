@@ -28,7 +28,7 @@ class TestPickerFragment : PickerDialogFragment<String>() {
     override val subject: Subject<String> by lazy { viewModel.pickSubject}
     override val itemGetter: (Int) -> String = { months[it] }
     override val carouselAdapter by lazy { CarouselAdapter(quickAdapter) }
-    override val recyclerView: RecyclerView by lazy { list }
+   // override val recyclerView: RecyclerView by lazy { list }
 
 
     inner class QuickAdapter(val list: List<String>) : RecyclerView.Adapter<QuickViewHolder>() {
